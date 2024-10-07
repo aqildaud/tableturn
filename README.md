@@ -1,6 +1,6 @@
 # tableturn
 
-Simple shuffle of words given
+Simple shuffle of words
 
 I named it tableturn as a reference to a joke made by **Micheal Scott** from the **The Office Season 5, Episode 23**.
 
