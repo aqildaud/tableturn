@@ -3,6 +3,9 @@
 #include <stdlib.h>
 #include <time.h>
 
+// limit words allowed
+#define MAX_PERMUTATION 362880
+
 void swap(char **a, char **b) {
     char *t = *a;
     *a = *b;
@@ -11,15 +14,31 @@ void swap(char **a, char **b) {
 
 void permute(char **a, int l, int r, char ***s, int *count) {
     if (l == r) {
+        if (*count >= MAX_PERMUTATION) {
+            fprintf(stderr, "The sentence given has exceeded the limit of permutation allowed");
+            exit(EXIT_FAILURE);
+        }
+
         // store the current permutation in s
         (*s) = realloc(*s, (*count + 1) * sizeof(char *));
+        if (*s == NULL) {
+            fprintf(stderr, "Memory allocation failed\n");
+            exit(EXIT_FAILURE);
+        }
+
         (*s)[*count] = (char *)malloc(1024);  // allocate memory for the sentence
+        if ((*s)[*count] == NULL) {
+            fprintf(stderr, "Memory allocation failed\n");
+            exit(EXIT_FAILURE);
+        }
+
         (*s)[*count][0] = '\0';  // initialize the string
 
         for (int i = 0; i <= r; i++) {
-            strcat((*s)[*count], a[i]);  // append the word
+            strcat((*s)[*count], a[i]);
             strcat((*s)[*count], " ");
         }
+        (*s)[*count][strlen((*s)[*count]) - 1] = '\0';
         (*count)++;
     } else {
         for (int i = l; i <= r; i++) {
