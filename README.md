@@ -8,5 +8,6 @@ The joke is that he's mixing up the expression 'How the tables have turned' to '
 
 Usage:
 ```zsh
-~ ./turntable "your sentence"
+~ gcc -o tableturn tableturn.c
+~ ./tableturn "your sentence"
 ```
