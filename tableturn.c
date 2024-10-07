@@ -37,13 +37,19 @@ int main(int argc, char *argv[]) {
         current_size++;
         token = strtok(NULL, d);
     }
-
-    turntable(strings, current_size);
     
+    clock_t start_time = clock();
+    turntable(strings, current_size);
+   
+    printf("\n"); 
     for (int i = 0; i < current_size; i++) {
         printf("%s ", strings[i]);
     }
-    printf("\n");
+    printf("\n\n");
+    clock_t end_time = clock();
+
+    double time_taken = ((double) end_time - start_time) / CLOCKS_PER_SEC;
+    printf("Executed in %f seconds...\n", time_taken);
 
     for (int i = 0; i < current_size; i++) {
         free(strings[i]);
